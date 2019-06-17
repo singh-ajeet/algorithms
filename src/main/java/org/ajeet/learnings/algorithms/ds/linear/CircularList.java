@@ -17,7 +17,32 @@ public final class CircularList<T>  {
     }
 
     public T remove(int index) {
-        throw new UnsupportedOperationException("remove operation is not supported by circular lined list.");
+        if (head == null){
+            throw new RuntimeException("List is empty");
+        }
+        int count = 0;
+
+        Node<T> tmp = head;
+        while(tmp != null){
+            if (count++ == index){
+                //Removing element by replacing it.
+                //We need to adjust head and last pointers
+                if(head == tmp.next){
+                    head = tmp;
+                }
+                if (last == tmp.next){
+                    last = tmp;
+                }
+                Node<T> removed = tmp.next;
+
+                tmp.value = tmp.next.value;
+                tmp.next = tmp.next.next;
+
+                return removed.value;
+            }
+            tmp = tmp.next;
+        }
+        return null;
     }
 
     public T find(int index) {
@@ -39,6 +64,8 @@ public final class CircularList<T>  {
         circular.add(3);
         circular.add(4);
 
+        circular.remove(1);
+
         //It should print same list 3 times
         for(int i=0; i< 12; i++){
             System.out.println(circular.find(i % 4));
@@ -51,6 +78,5 @@ public final class CircularList<T>  {
             System.out.println(tmp);
             tmp = tmp.next;
         }
-
     }
 }
