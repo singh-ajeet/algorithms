@@ -1,6 +1,7 @@
 package org.ajeet.learnings.algorithms.ds.tree;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public final class BinaryTree<K extends Comparable<K>, V> {
     private TreeNode<K, V> root;
@@ -54,15 +55,7 @@ public final class BinaryTree<K extends Comparable<K>, V> {
         if(root == null){
             return i;
         }
-        if(root.leftChild == null && root.rightChild == null){
-            return i + 1;
-        } else if (root.rightChild == null){
-            return size(i+1, root.leftChild);
-        } else if(root.leftChild == null){
-            return  size(i+1, root.rightChild);
-        } else {
-            return size(i, root.leftChild) + size(i, root.rightChild);
-        }
+        return size(i, root.leftChild) + size(i, root.rightChild) + 1;
     }
 
     public TreeNode<K, V> commonParent(K key1, K key2){
@@ -122,7 +115,9 @@ public final class BinaryTree<K extends Comparable<K>, V> {
      * @return
      */
     public int diameter(){
-        return diameter(-1, root);
+        AtomicInteger diameter = new AtomicInteger(0);
+        diameter(0, diameter, root);
+        return diameter.get();
     }
 
     /**
@@ -143,16 +138,50 @@ public final class BinaryTree<K extends Comparable<K>, V> {
         return Math.max(leftHeight, rightHeight) + 1;
     }
 
-    private int diameter(int i, TreeNode<K, V> root) {
-        throw new UnsupportedOperationException("Serialization is not supported.");
+    private int diameter(int i, AtomicInteger diameter, TreeNode<K, V> root) {
+        if(root == null){
+            return 0;
+        }
+        int left = diameter(i, diameter, root.leftChild);
+        int right = diameter(i, diameter, root.rightChild);
+        //Calcualte through root
+        int tmp = left + right + 1;
+        diameter.set(Math.max(diameter.get(), tmp));
+
+        return Math.max(left, right) + 1;
     }
+
 
     public List<TreeNode<K, V>> levels(){
         throw new UnsupportedOperationException("Serialization is not supported.");
     }
 
-    public void buildTreeFromSortedData(Pair<K, V>[] data){
-        throw new UnsupportedOperationException("Serialization is not supported.");
+    /**
+     * Build binary tree form sorted data.
+     *
+     * @param data
+     */
+    public void build(Pair<K, V>[] data){
+        if(data == null || data.length == 0){
+            throw new IllegalArgumentException("data array cant be null or empty");
+        }
+
+        root = build(0, data.length-1, data);
+    }
+
+    private TreeNode<K, V> build(int start, int end, Pair<K,V>[] data) {
+        if(start > end){
+            return null;
+        }
+
+        int mid = start + end >>> 1;
+
+        TreeNode<K, V> node = new TreeNode<>(data[mid].key, data[mid].data);
+
+        node.leftChild = build(start, mid -1, data);
+        node.rightChild = build(mid + 1, end, data);
+
+        return node;
     }
 
     public byte[] serialize(){
@@ -183,24 +212,4 @@ public final class BinaryTree<K extends Comparable<K>, V> {
             return "TreeNode{" + "key=" + key + ", data=" + data + '}';
         }
     }
-
-    public static void main(String[] args) {
-        BinaryTree<Integer, Integer> tree = new BinaryTree<>();
-        tree.put(8, 8);
-        tree.put(7, 7);
-        tree.put(11, 11);
-        tree.put(10, 10);
-        tree.put(15, 15);
-        tree.put(14, 14);
-
-
-        System.out.println(tree.root);
-        //System.out.println(tree.depth(5));
-       //  System.out.println(tree.size());
-       //System.out.println(tree.height());
-      //  System.out.println(tree.commonParent(2, 4));
-        System.out.println(tree.commonParent(7, 14));
-
-    }
-
 }
