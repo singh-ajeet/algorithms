@@ -128,12 +128,16 @@ public class BTree<Key extends Comparable<Key>, Value>  {
      * @throws IllegalArgumentException if {@code key} is {@code null}
      */
     public void put(Key key, Value val) {
-        if (key == null) throw new IllegalArgumentException("argument key to put() is null");
+        if (key == null){
+            throw new IllegalArgumentException("argument key to put() is null");
+        }
+
         Node u = insert(root, key, val, height);
         n++;
+        //Key was added in a node and no new node was created
         if (u == null) return;
 
-        // need to split root
+        // New node was creaed and we need to split root
         Node t = new Node(2);
         t.children[0] = new Entry(root.children[0].key, null, root);
         t.children[1] = new Entry(u.children[0].key, null, u);
@@ -147,14 +151,11 @@ public class BTree<Key extends Comparable<Key>, Value>  {
 
         // external node
         if (height == 0) {
-            for (keyIndex = 0; keyIndex < root.m; keyIndex++) {
-                if (less(key, root.children[keyIndex].key)){
-                    break;
-                }
-            }
+            //Seek to location to insert new data
+            keyIndex = seekToIndexToInsert(root, key);
         }  else { // internal node
             for (keyIndex = 0; keyIndex < root.m; keyIndex++) {
-                if ((keyIndex+1 == root.m) || less(key, root.children[keyIndex+1].key)) {
+                if ((keyIndex+1 == root.m) || less1(key, root.children[keyIndex+1].key)) {
                     Node u = insert(root.children[keyIndex++].next, key, val, height-1);
                     if (u == null) return null;
                     entry.key = u.children[0].key;
@@ -164,12 +165,30 @@ public class BTree<Key extends Comparable<Key>, Value>  {
             }
         }
 
-        for (int i = root.m; i > keyIndex; i--)
+        //Move elements to RIGHT to make space for new entry
+        for (int i = root.m; i > keyIndex; i--){
             root.children[i] = root.children[i-1];
+        }
+
         root.children[keyIndex] = entry;
         root.m++;
-        if (root.m < M) return null;
-        else         return split(root);
+
+        //If number of entries have been exceeded M than split it.
+        if (root.m < M) {
+            return null;
+        } else {
+            return split(root);
+        }
+    }
+
+    private int seekToIndexToInsert(Node root, Key key) {
+        int keyIndex;
+        for (keyIndex = 0; keyIndex < root.m; keyIndex++) {
+            if (less(key, root.children[keyIndex].key)){
+                break;
+            }
+        }
+        return keyIndex;
     }
 
     // split node in half
@@ -209,6 +228,10 @@ public class BTree<Key extends Comparable<Key>, Value>  {
             }
         }
         return s.toString();
+    }
+
+    private boolean less1(Comparable k1, Comparable k2) {
+        return k1.compareTo(k2) < 0;
     }
 
 
