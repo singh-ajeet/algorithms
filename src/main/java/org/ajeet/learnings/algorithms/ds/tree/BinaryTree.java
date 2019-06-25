@@ -161,7 +161,7 @@ public final class BinaryTree<K extends Comparable<K>, V> {
      *
      * @param data
      */
-    public void build(Pair<K, V>[] data){
+    public void build(Tuple<K, V>[] data){
         if(data == null || data.length == 0){
             throw new IllegalArgumentException("data array cant be null or empty");
         }
@@ -169,7 +169,7 @@ public final class BinaryTree<K extends Comparable<K>, V> {
         root = build(0, data.length-1, data);
     }
 
-    private TreeNode<K, V> build(int start, int end, Pair<K,V>[] data) {
+    private TreeNode<K, V> build(int start, int end, Tuple<K,V>[] data) {
         if(start > end){
             return null;
         }

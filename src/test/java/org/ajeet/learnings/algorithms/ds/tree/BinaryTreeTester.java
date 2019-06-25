@@ -88,15 +88,15 @@ public final class BinaryTreeTester {
     @Test
     public void buildTree(){
         BinaryTree<Integer, Integer> tree = new BinaryTree<>();
-        Pair<Integer, Integer>[] data = new Pair[]{
-                new Pair(1, 1),
-                new Pair(2, 2),
-                new Pair(3, 3),
-                new Pair(4, 4),
-                new Pair(5, 5),
-                new Pair(6, 6),
-                new Pair(7, 7),
-                new Pair(8, 8)
+        Tuple<Integer, Integer>[] data = new Tuple[]{
+                new Tuple(1, 1),
+                new Tuple(2, 2),
+                new Tuple(3, 3),
+                new Tuple(4, 4),
+                new Tuple(5, 5),
+                new Tuple(6, 6),
+                new Tuple(7, 7),
+                new Tuple(8, 8)
 
         };
         tree.build(data);
