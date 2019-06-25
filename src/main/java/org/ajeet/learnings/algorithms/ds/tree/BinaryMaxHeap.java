@@ -1,13 +1,13 @@
 package org.ajeet.learnings.algorithms.ds.tree;
 
 public final class BinaryMaxHeap<E extends Comparable<E>> {
-    private final E[] m_buffer;
+    private final Object[] m_buffer;
     private final int m_capacity;
     private int index = 0;
 
     public BinaryMaxHeap(int capacity) {
         m_capacity = capacity;
-        m_buffer = (E[]) new Object[capacity];
+        m_buffer =  new Object[capacity];
     }
 
     public void insert(E element){
@@ -23,14 +23,25 @@ public final class BinaryMaxHeap<E extends Comparable<E>> {
 
     private void swim(int index) {
         int j = index ;
-        while(j > 1 && m_buffer[j/2].compareTo(m_buffer[j]) < 0) {
+        while(j > 1 && ((E)m_buffer[j/2]).compareTo((E)m_buffer[j]) < 0) {
             swap(j, j/2);
             j = j / 2;
         }
     }
 
     private void dive(int i) {
-        int left = 2 * i;
+        while(i < m_capacity ){
+            int k = 2 * i;
+            if( k + 1 < m_capacity && ((E)m_buffer[k + 1]).compareTo((E)m_buffer[k]) < 0){
+                k++;
+            }
+            if (((E)m_buffer[i]).compareTo((E)m_buffer[k]) < 0){
+                break;
+            }
+            swap(k, i);
+            i = k;
+        }
+ /*       int left = 2 * i;
         int right = 2 * i + 1;
         int largest = i;
 
@@ -43,10 +54,10 @@ public final class BinaryMaxHeap<E extends Comparable<E>> {
             swap(largest, i);
             dive(largest);
         }
-    }
+*/    }
 
     private void swap(int first, int second) {
-        E tmp = m_buffer[first];
+        E tmp = (E) m_buffer[first];
         m_buffer[first] = m_buffer[second];
         m_buffer[second] = tmp;
     }
@@ -54,10 +65,28 @@ public final class BinaryMaxHeap<E extends Comparable<E>> {
     public E maxElement(){
         if (index == 0)
             throw new IllegalStateException("");
-        return null;
+        return (E) m_buffer[1];
     }
 
-    public boolean removeMaxElement(E element){
+    public boolean delMaxElement(E element){
+        if (index == 0)
+            throw new IllegalStateException("Hea is empty !!");
+
+        swap(0, index);
+        m_buffer[index--] = null;
+        dive(index);
         return false;
+    }
+
+    public static void main(String[] args) {
+        BinaryMaxHeap<Integer> heap = new BinaryMaxHeap<>(10);
+        heap.insert(200);
+        heap.insert(100);
+        heap.insert(10);
+        heap.insert(50);
+        heap.insert(300);
+
+        System.out.println(heap.maxElement());
+
     }
 }
