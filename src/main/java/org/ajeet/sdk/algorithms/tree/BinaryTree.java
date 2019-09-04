@@ -84,9 +84,6 @@ public final class BinaryTree<K extends Comparable<K>, V> {
     }
 
     public static void main(String[] args) {
-        TreeMap treeMap = new TreeMap();
-        treeMap.remove(null);
-
         BinaryTree<Integer, Integer> tree = new BinaryTree<>();
         tree.put(8,8);
         tree.put(4, 4);
