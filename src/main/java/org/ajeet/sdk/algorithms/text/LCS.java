@@ -1,9 +1,14 @@
 package org.ajeet.sdk.algorithms.text;
 
+/**
+ * Dynamic programming approach to solve 'Longest Common Subsequence' problem
+ */
 public final class LCS {
     private final int[][] lcs;
+
     private final String first;
     private final String second;
+
     private final int L1;
     private final int L2;
 
