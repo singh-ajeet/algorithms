@@ -1,4 +1,4 @@
-package org.ajeet.sdk.algorithms.text;
+package org.ajeet.learnings.algorithms.text;
 
 import java.util.ArrayList;
 import java.util.List;

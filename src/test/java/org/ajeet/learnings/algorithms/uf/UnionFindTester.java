@@ -6,7 +6,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-public final class UninFindTester {
+public final class UnionFindTester {
     @Rule
     public ExpectedException m_expectedException = ExpectedException.none();;
 
@@ -14,25 +14,25 @@ public final class UninFindTester {
     public void constructor_invalidArgument1(){
         m_expectedException.expect(IllegalArgumentException.class);
         m_expectedException.expectMessage("Capacity should be greater than zero.");
-        new UninFind(-1);
+        new UnionFind(-1);
     }
 
     @Test
     public void constructor_invalidArgument2(){
         m_expectedException.expect(IllegalArgumentException.class);
         m_expectedException.expectMessage("Capacity should be greater than zero.");
-        new UninFind(0);
+        new UnionFind(0);
     }
 
     @Test
     public void constructor(){
-        UninFind uninFind = new UninFind(10);
+        UnionFind uninFind = new UnionFind(10);
         assertNotNull(uninFind);
     }
 
     @Test
     public void union_components(){
-        UninFind uf = new UninFind(10);
+        UnionFind uf = new UnionFind(10);
         uf.union(1, 3);
         assertThat(9, is(uf.components()));
         uf.union(3, 4);
@@ -52,7 +52,7 @@ public final class UninFindTester {
 
     @Test
     public void union_find(){
-        UninFind uf = new UninFind(10);
+        UnionFind uf = new UnionFind(10);
         uf.union(1, 3);
         assertThat(1, is(uf.find(3)));
         uf.union(3, 4);
@@ -63,7 +63,7 @@ public final class UninFindTester {
 
     @Test
     public void connected(){
-        UninFind uf = new UninFind(10);
+        UnionFind uf = new UnionFind(10);
         uf.union(1, 3);
         assertTrue(uf.connected(1, 3));
     }

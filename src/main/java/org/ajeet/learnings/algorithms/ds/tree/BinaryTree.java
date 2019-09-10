@@ -1,5 +1,6 @@
 package org.ajeet.learnings.algorithms.ds.tree;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -56,6 +57,57 @@ public final class BinaryTree<K extends Comparable<K>, V> {
             return i;
         }
         return size(i, root.leftChild) + size(i, root.rightChild) + 1;
+    }
+
+    public List<V> traverse(Traverse traverseType){
+        switch(traverseType){
+            case PRE_ORDER: return preOrderTraverse();
+            case IN_ORDER: return inOrderTraversal();
+            case POST_ORDER: return postOrderTraversal();
+            default: throw new IllegalArgumentException("Invalid traverse type.");
+        }
+    }
+
+    private List<V> inOrderTraversal() {
+        List<V> result =  new ArrayList<>();
+        inOrderTraversal(root, result);
+        return result;
+    }
+
+    private void inOrderTraversal(TreeNode<K, V> root, List<V> result) {
+        if(root == null)
+            return;
+        inOrderTraversal(root.leftChild, result);
+        result.add(root.data);
+        inOrderTraversal(root.rightChild, result);
+    }
+
+    private List<V> postOrderTraversal() {
+        List<V> result =  new ArrayList<>();
+        postOrderTraversal(root, result);
+        return result;
+    }
+
+    private void postOrderTraversal(TreeNode<K, V> root, List<V> result) {
+        if(root == null)
+            return;
+        postOrderTraversal(root.leftChild, result);
+        postOrderTraversal(root.rightChild, result);
+        result.add(root.data);
+    }
+
+    private List<V> preOrderTraverse() {
+        List<V> result =  new ArrayList<>();
+        preOrderTraverse(root, result);
+        return result;
+    }
+
+    private void preOrderTraverse(TreeNode<K, V> root, List<V> result) {
+        if(root == null)
+            return;
+        result.add(root.data);
+        preOrderTraverse(root.leftChild, result);
+        preOrderTraverse(root.rightChild, result);
     }
 
     public TreeNode<K, V> commonParent(K key1, K key2){
@@ -196,7 +248,13 @@ public final class BinaryTree<K extends Comparable<K>, V> {
         return root;
     }
 
-    final class TreeNode<K extends Comparable<K>, V> {
+    enum Traverse {
+        PRE_ORDER,
+        IN_ORDER,
+        POST_ORDER;
+    }
+
+    final static class TreeNode<K extends Comparable<K>, V> {
         K key;
         V data;
         TreeNode<K, V> leftChild = null;

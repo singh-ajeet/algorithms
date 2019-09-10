@@ -2,13 +2,13 @@ package org.ajeet.learnings.algorithms.uf;
 
 import java.util.Arrays;
 
-public final class UninFind {
+public final class UnionFind {
     private final int[] grid;
     private final int[] size;
     private final int capacity;
     private int numOfComponents;
 
-    public UninFind(int capacity) {
+    public UnionFind(int capacity) {
         if(! (capacity > 0)){
             throw new IllegalArgumentException("Capacity should be greater than zero.");
         }

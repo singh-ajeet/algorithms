@@ -1,4 +1,4 @@
-package org.ajeet.sdk.algorithms.math;
+package org.ajeet.learnings.algorithms.math;
 
 import java.util.Arrays;
 import java.util.LinkedList;

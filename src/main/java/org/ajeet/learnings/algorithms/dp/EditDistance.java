@@ -1,4 +1,4 @@
-package org.ajeet.sdk.algorithms.dp;
+package org.ajeet.learnings.algorithms.dp;
 
 public final class EditDistance {
     private final int[][] distance;

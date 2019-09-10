@@ -1,4 +1,4 @@
-package org.ajeet.sdk.algorithms.dp;
+package org.ajeet.learnings.algorithms.dp;
 
 /**
  * Dynamic programming approach to solve 'Longest Common Subsequence' problem

@@ -3,6 +3,9 @@ package org.ajeet.learnings.algorithms.ds.tree;
 import org.hamcrest.core.Is;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public final class BinaryTreeTester {
@@ -104,4 +107,68 @@ public final class BinaryTreeTester {
         assertThat(8, Is.is(tree.size()));
         assertThat(4, Is.is(tree.root().key));
     }
+
+    @Test
+    public void preOrderTraversal(){
+        BinaryTree<Integer, Integer> tree = new BinaryTree<>();
+        Tuple<Integer, Integer>[] data = new Tuple[]{
+                new Tuple(1, 1),
+                new Tuple(2, 2),
+                new Tuple(3, 3),
+                new Tuple(4, 4),
+                new Tuple(5, 5),
+                new Tuple(6, 6),
+                new Tuple(7, 7),
+                new Tuple(8, 8)
+
+        };
+        tree.build(data);
+        List<Integer> values = tree.traverse(BinaryTree.Traverse.PRE_ORDER);
+
+        assertThat(8, Is.is(values.size()));
+        assertThat(Arrays.asList(4,2,1,3,6,5,7,8), Is.is(values));
+    }
+
+    @Test
+    public void inOrderTraversal(){
+        BinaryTree<Integer, Integer> tree = new BinaryTree<>();
+        Tuple<Integer, Integer>[] data = new Tuple[]{
+                new Tuple(1, 1),
+                new Tuple(2, 2),
+                new Tuple(3, 3),
+                new Tuple(4, 4),
+                new Tuple(5, 5),
+                new Tuple(6, 6),
+                new Tuple(7, 7),
+                new Tuple(8, 8)
+
+        };
+        tree.build(data);
+        List<Integer> values = tree.traverse(BinaryTree.Traverse.IN_ORDER);
+
+        assertThat(8, Is.is(values.size()));
+        assertThat(values, Is.is(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8)));
+    }
+
+    @Test
+    public void postOrderTraversal(){
+        BinaryTree<Integer, Integer> tree = new BinaryTree<>();
+        Tuple<Integer, Integer>[] data = new Tuple[]{
+                new Tuple(1, 1),
+                new Tuple(2, 2),
+                new Tuple(3, 3),
+                new Tuple(4, 4),
+                new Tuple(5, 5),
+                new Tuple(6, 6),
+                new Tuple(7, 7),
+                new Tuple(8, 8)
+
+        };
+        tree.build(data);
+        List<Integer> values = tree.traverse(BinaryTree.Traverse.POST_ORDER);
+
+        assertThat(8, Is.is(values.size()));
+        assertThat(values, Is.is(Arrays.asList(1, 3, 2, 5, 8, 7, 6, 4)));
+    }
+
 }

@@ -1,7 +1,5 @@
 package org.ajeet.learnings.algorithms.uf;
 
-import java.util.Objects;
-
 public final class PercolationDFS {
 
     public static boolean percolate(boolean[][] input){

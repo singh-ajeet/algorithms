@@ -1,4 +1,4 @@
-package org.ajeet.sdk.algorithms.list;
+package org.ajeet.learnings.algorithms.list;
 
 public final class LinkedList<T> {
     private Node first;

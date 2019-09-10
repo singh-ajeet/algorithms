@@ -1,6 +1,4 @@
-package org.ajeet.sdk.algorithms.tree;
-
-import java.util.TreeMap;
+package org.ajeet.learnings.algorithms.tree;
 
 public final class BinaryTree<K extends Comparable<K>, V> {
     private Node<K, V> root;

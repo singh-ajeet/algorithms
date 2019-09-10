@@ -1,4 +1,4 @@
-package org.ajeet.sdk.algorithms.tree;
+package org.ajeet.learnings.algorithms.tree;
 
 public final class RedBlackTree<K extends Comparable<K>, V> {
     private Node<K, V> root;
