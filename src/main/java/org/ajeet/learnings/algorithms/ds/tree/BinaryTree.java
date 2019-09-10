@@ -209,13 +209,13 @@ public final class BinaryTree<K extends Comparable<K>, V> {
     }
 
     /**
-     * Build binary tree form sorted data.
+     * Build binary tree form sorted _2.
      *
      * @param data
      */
     public void build(Tuple<K, V>[] data){
         if(data == null || data.length == 0){
-            throw new IllegalArgumentException("data array cant be null or empty");
+            throw new IllegalArgumentException("_2 array cant be null or empty");
         }
 
         root = build(0, data.length-1, data);
@@ -228,7 +228,7 @@ public final class BinaryTree<K extends Comparable<K>, V> {
 
         int mid = start + end >>> 1;
 
-        TreeNode<K, V> node = new TreeNode<>(data[mid].key, data[mid].data);
+        TreeNode<K, V> node = new TreeNode<>(data[mid]._1, data[mid]._2);
 
         node.leftChild = build(start, mid -1, data);
         node.rightChild = build(mid + 1, end, data);
@@ -267,7 +267,7 @@ public final class BinaryTree<K extends Comparable<K>, V> {
 
         @Override
         public String toString() {
-            return "TreeNode{" + "key=" + key + ", data=" + data + '}';
+            return "TreeNode{" + "_1=" + key + ", _2=" + data + '}';
         }
     }
 }

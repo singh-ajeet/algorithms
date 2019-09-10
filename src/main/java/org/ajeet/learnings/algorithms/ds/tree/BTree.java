@@ -9,9 +9,9 @@ public class BTree<Key extends Comparable<Key>, Value>  {
 
     private Node root;       // root of the B-tree
     private int height;      // height of the B-tree
-    private int n;           // number of key-value pairs in the B-tree
+    private int n;           // number of _1-value pairs in the B-tree
 
-    // helper B-tree node data type
+    // helper B-tree node _2 type
     private static final class Node {
         private int m;                             // number of children
         private Entry[] children = new Entry[M];   // the array of children
@@ -30,8 +30,8 @@ public class BTree<Key extends Comparable<Key>, Value>  {
         }
     }
 
-    // internal nodes: only use key and next
-    // external nodes: only use key and value
+    // internal nodes: only use _1 and next
+    // external nodes: only use _1 and value
     private static class Entry {
         private Comparable key;
         private final Object val;
@@ -45,7 +45,7 @@ public class BTree<Key extends Comparable<Key>, Value>  {
         @Override
         public String toString() {
             return "Entry{" +
-                    "key=" + key +
+                    "_1=" + key +
                     ", val=" + val +
                     '}';
         }
@@ -67,8 +67,8 @@ public class BTree<Key extends Comparable<Key>, Value>  {
     }
 
     /**
-     * Returns the number of key-value pairs in this symbol table.
-     * @return the number of key-value pairs in this symbol table
+     * Returns the number of _1-value pairs in this symbol table.
+     * @return the number of _1-value pairs in this symbol table
      */
     public int size() {
         return n;
@@ -85,12 +85,12 @@ public class BTree<Key extends Comparable<Key>, Value>  {
 
 
     /**
-     * Returns the value associated with the given key.
+     * Returns the value associated with the given _1.
      *
-     * @param  key the key
-     * @return the value associated with the given key if the key is in the symbol table
-     *         and {@code null} if the key is not in the symbol table
-     * @throws IllegalArgumentException if {@code key} is {@code null}
+     * @param  key the _1
+     * @return the value associated with the given _1 if the _1 is in the symbol table
+     *         and {@code null} if the _1 is not in the symbol table
+     * @throws IllegalArgumentException if {@code _1} is {@code null}
      */
     public Value get(Key key) {
         if (key == null) throw new IllegalArgumentException("argument to get() is null");
@@ -119,17 +119,17 @@ public class BTree<Key extends Comparable<Key>, Value>  {
 
 
     /**
-     * Inserts the key-value pair into the symbol table, overwriting the old value
-     * with the new value if the key is already in the symbol table.
-     * If the value is {@code null}, this effectively deletes the key from the symbol table.
+     * Inserts the _1-value pair into the symbol table, overwriting the old value
+     * with the new value if the _1 is already in the symbol table.
+     * If the value is {@code null}, this effectively deletes the _1 from the symbol table.
      *
-     * @param  key the key
+     * @param  key the _1
      * @param  val the value
-     * @throws IllegalArgumentException if {@code key} is {@code null}
+     * @throws IllegalArgumentException if {@code _1} is {@code null}
      */
     public void put(Key key, Value val) {
         if (key == null){
-            throw new IllegalArgumentException("argument key to put() is null");
+            throw new IllegalArgumentException("argument _1 to put() is null");
         }
 
         Node u = insert(root, key, val, height);
@@ -151,7 +151,7 @@ public class BTree<Key extends Comparable<Key>, Value>  {
 
         // external node
         if (height == 0) {
-            //Seek to location to insert new data
+            //Seek to location to insert new _2
             keyIndex = seekToIndexToInsert(root, key);
         }  else { // internal node
             for (keyIndex = 0; keyIndex < root.m; keyIndex++) {
@@ -246,7 +246,7 @@ public class BTree<Key extends Comparable<Key>, Value>  {
 
 
     /**
-     * Unit tests the {@code BTree} data type.
+     * Unit tests the {@code BTree} _2 type.
      *
      * @param args the command-line arguments
      */
