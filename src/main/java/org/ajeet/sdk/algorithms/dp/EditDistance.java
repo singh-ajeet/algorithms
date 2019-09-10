@@ -1,4 +1,4 @@
-package org.ajeet.sdk.algorithms.text;
+package org.ajeet.sdk.algorithms.dp;
 
 public final class EditDistance {
     private final int[][] distance;
@@ -35,9 +35,25 @@ public final class EditDistance {
                 if (first.charAt(i-1) == second.charAt(j-1))
                     distance[i][j] = distance[i-1][j-1];
                 else
-                    distance[i][j] = min(distance[i-1][j] + 1, distance[i][j-1] +1, distance[i-1][j-1] + 1);
+                    distance[i][j] = min(
+                                        delete(i, j),  // Delete a character
+                                        add(i, j),     // Add a character
+                                        replace(i, j)  // Replace a character
+                                     );
             }
         }
+    }
+
+    private int delete(int i, int j){
+        return distance[i-1][j] + 1;
+    }
+
+    private int add(int i, int j){
+        return distance[i][j-1] +1;
+    }
+
+    private int replace(int i, int j){
+        return distance[i-1][j-1] + 1;
     }
 
     private int min(int x, int y, int z){
