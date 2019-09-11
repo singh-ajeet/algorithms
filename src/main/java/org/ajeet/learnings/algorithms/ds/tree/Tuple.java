@@ -1,15 +1,20 @@
 package org.ajeet.learnings.algorithms.ds.tree;
 
-class Tuple<K, V> {
-    K key;
-    V data;
+public final class Tuple<T1, T2> {
+    public final T1 _1;
+    public final  T2 _2;
 
-    public Tuple(K key, V data) {
-        this.key = key;
-        this.data = data;
+    public Tuple(T1 key, T2 _2) {
+        this._1 = key;
+        this._2 = _2;
     }
 
-    static <K, V> Tuple<K, V> pair(K key, V data){
+    public static <T1, T2> Tuple<T1, T2> pair(T1 key, T2 data){
         return new Tuple<>(key, data);
+    }
+
+    @Override
+    public String toString() {
+        return "Tuple [" + _1 + "," + _2 + ']';
     }
 }

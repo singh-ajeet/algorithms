@@ -75,5 +75,9 @@ public final class LCS {
 
         LCS lcs3  = new LCS("Keep it simple stupid.", "COMPLEX");
         System.out.println("Sub sequence: " + lcs3.lcs() + ", length: " + lcs3.length());
+
+        LCS lps  = new LCS("Ajeet", "teejA");
+        System.out.println("Sub sequence: " + lps.lcs() + ", length: " + lps.length());
+
     }
 }
