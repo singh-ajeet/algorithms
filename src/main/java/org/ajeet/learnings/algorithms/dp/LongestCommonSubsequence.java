@@ -1,7 +1,7 @@
 package org.ajeet.learnings.algorithms.dp;
 
 /**
- * Dynamic programming approach to solve 'Longest Common Subsequence' problem
+ * Dynamic programming approach to getWays 'Longest Common Subsequence' problem
  */
 public final class LongestCommonSubsequence {
     private final int[][] lcs;
