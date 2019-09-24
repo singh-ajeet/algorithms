@@ -93,7 +93,7 @@ public class BTree<Key extends Comparable<Key>, Value>  {
      * @throws IllegalArgumentException if {@code _1} is {@code null}
      */
     public Value get(Key key) {
-        if (key == null) throw new IllegalArgumentException("argument to get() is null");
+        if (key == null) throw new IllegalArgumentException("argument to find() is null");
         return search(root, key, height);
     }
 
@@ -271,12 +271,12 @@ public class BTree<Key extends Comparable<Key>, Value>  {
         st.put("www.weather.com",      "63.111.66.11");
         st.put("www.yahoo.com",        "216.109.118.65");
 
-        System.out.println("cs.princeton.edu:  " + st.get("www.cs.princeton.edu"));
-        System.out.println("hardvardsucks.com: " + st.get("www.harvardsucks.com"));
-        System.out.println("simpsons.com:      " + st.get("www.simpsons.com"));
-        System.out.println("apple.com:         " + st.get("www.apple.com"));
-        System.out.println("ebay.com:          " + st.get("www.ebay.com"));
-        System.out.println("dell.com:          " + st.get("www.dell.com"));
+        System.out.println("cs.princeton.edu:  " + st.find("www.cs.princeton.edu"));
+        System.out.println("hardvardsucks.com: " + st.find("www.harvardsucks.com"));
+        System.out.println("simpsons.com:      " + st.find("www.simpsons.com"));
+        System.out.println("apple.com:         " + st.find("www.apple.com"));
+        System.out.println("ebay.com:          " + st.find("www.ebay.com"));
+        System.out.println("dell.com:          " + st.find("www.dell.com"));
         System.out.println();
 
         System.out.println("size:    " + st.size());

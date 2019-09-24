@@ -1,9 +1,9 @@
 package org.ajeet.learnings.algorithms.dp;
 
 /**
- * Dynamic programming approach to solve 'Longest Common Subsequence' problem
+ * Dynamic programming approach to getWays 'Longest Common Subsequence' problem
  */
-public final class LCS {
+public final class LongestCommonSubsequence {
     private final int[][] lcs;
     private final String first;
     private final String second;
@@ -12,7 +12,7 @@ public final class LCS {
 
     private String subSequence;
 
-    public LCS(String first, String second) {
+    public LongestCommonSubsequence(String first, String second) {
         if(first == null || first.length() == 0 || second == null || second.length() == 0)
             throw new IllegalArgumentException("first and second both strings must be non empty and non null.");
 
@@ -67,16 +67,16 @@ public final class LCS {
     }
 
     public static void main(String[] args) {
-        LCS lcs1  = new LCS("Simplicity is ultimate sofistication.", "Simple");
-        System.out.println("Sub sequence: " + lcs1.lcs() + ", length: " + lcs1.length());
+        LongestCommonSubsequence longestCommonSubsequence1 = new LongestCommonSubsequence("Simplicity is ultimate sofistication.", "Simple");
+        System.out.println("Sub sequence: " + longestCommonSubsequence1.lcs() + ", length: " + longestCommonSubsequence1.length());
 
-        LCS lcs2  = new LCS("Do not repeat yourself", "coding");
-        System.out.println("Sub sequence: " + lcs2.lcs() + ", length: " + lcs2.length());
+        LongestCommonSubsequence longestCommonSubsequence2 = new LongestCommonSubsequence("Do not repeat yourself", "coding");
+        System.out.println("Sub sequence: " + longestCommonSubsequence2.lcs() + ", length: " + longestCommonSubsequence2.length());
 
-        LCS lcs3  = new LCS("Keep it simple stupid.", "COMPLEX");
-        System.out.println("Sub sequence: " + lcs3.lcs() + ", length: " + lcs3.length());
+        LongestCommonSubsequence longestCommonSubsequence3 = new LongestCommonSubsequence("Keep it simple stupid.", "COMPLEX");
+        System.out.println("Sub sequence: " + longestCommonSubsequence3.lcs() + ", length: " + longestCommonSubsequence3.length());
 
-        LCS lps  = new LCS("Ajeet", "teejA");
+        LongestCommonSubsequence lps  = new LongestCommonSubsequence("Ajeet", "teejA");
         System.out.println("Sub sequence: " + lps.lcs() + ", length: " + lps.length());
 
     }

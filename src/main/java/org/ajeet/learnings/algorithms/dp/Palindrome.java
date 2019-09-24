@@ -1,4 +1,4 @@
-package org.ajeet.learnings.algorithms.text;
+package org.ajeet.learnings.algorithms.dp;
 
 public final class Palindrome {
 
