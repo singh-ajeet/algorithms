@@ -1,11 +1,13 @@
 package org.ajeet.learnings.algorithms.ds.tree;
 
-public final class BinaryMaxHeap<E extends Comparable<E>> {
+import java.util.PriorityQueue;
+
+public final class BinaryMinHeap<E extends Comparable<E>> {
     private final Object[] m_buffer;
     private final int m_capacity;
     private int m_index = 0;
 
-    public BinaryMaxHeap(int capacity) {
+    public BinaryMinHeap(int capacity) {
         m_capacity = capacity;
         m_buffer =  new Object[capacity];
     }
@@ -26,25 +28,26 @@ public final class BinaryMaxHeap<E extends Comparable<E>> {
     }
     private void swim(int index) {
         int j = index ;
-        while(j > 1 && ((E)m_buffer[j/2]).compareTo((E)m_buffer[j]) > 0) {
-            swap(j, j/2);
+        while(j > 1) {
+            if(((E)m_buffer[j/2]).compareTo((E)m_buffer[j]) > 0)
+                swap(j, j/2);
             j = j / 2;
         }
     }
 
     private void dive(int i) {
-        while(i < m_index ){
+        while(2* i <= m_index ){
             int k = 2 * i;
-            if( k + 1 < m_index && ((E)m_buffer[k + 1]).compareTo((E)m_buffer[k]) > 0){
+            if( k < m_index && ((E)m_buffer[k + 1]).compareTo((E)m_buffer[k]) < 0){
                 k++;
             }
-            if (((E)m_buffer[i]).compareTo((E)m_buffer[k]) > 0){
+            if (! (((E)m_buffer[i]).compareTo((E)m_buffer[k]) >  0)){
                 break;
             }
             swap(k, i);
             i = k;
         }
-     }
+    }
 
     private void swap(int first, int second) {
         E tmp = (E) m_buffer[first];
@@ -53,24 +56,24 @@ public final class BinaryMaxHeap<E extends Comparable<E>> {
     }
 
     public E peek(){
-        if (m_index == 0)
+        if (isEmpty())
             throw new IllegalStateException("");
-        return (E) m_buffer[m_index];
+        return (E) m_buffer[1];
     }
 
     public E pop(){
-        if (m_index == 0)
+        if (isEmpty())
             throw new IllegalStateException("Heap is empty !!");
 
-        E element = (E) m_buffer[m_index];
-        swap(0, m_index);
-        m_buffer[m_index--] = null;
+        E element = (E) m_buffer[1];
+        swap(1, m_index--);
         dive(m_index);
+        m_buffer[m_index+1] = null;
         return element;
     }
 
     public static void main(String[] args) {
-        BinaryMaxHeap<Integer> heap = new BinaryMaxHeap<>(10);
+        BinaryMinHeap<Integer> heap = new BinaryMinHeap<>(10);
         heap.insert(200);
         heap.insert(100);
         heap.insert(10);
@@ -78,10 +81,9 @@ public final class BinaryMaxHeap<E extends Comparable<E>> {
         heap.insert(300);
 
         System.out.println(heap.peek());
-
-        System.out.println("Deleting ...");
-
+        System.out.println("deleting ...");
         while (!heap.isEmpty())
             System.out.println(heap.pop());
+
     }
 }
