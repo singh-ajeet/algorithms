@@ -1,4 +1,4 @@
-package org.ajeet.learnings.algorithms.ds.graph;
+package org.ajeet.learnings.algorithms.graph;
 
 import java.util.List;
 

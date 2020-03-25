@@ -1,4 +1,4 @@
-package org.ajeet.learnings.algorithms.ds.math;
+package org.ajeet.learnings.algorithms.math;
 
 import java.util.ArrayList;
 import java.util.Arrays;

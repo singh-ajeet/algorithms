@@ -1,6 +1,5 @@
 package org.ajeet.learnings.algorithms.linear;
 
-import org.ajeet.learnings.algorithms.ds.linear.StackArray;
 import org.hamcrest.core.Is;
 import org.junit.Rule;
 import org.junit.Test;

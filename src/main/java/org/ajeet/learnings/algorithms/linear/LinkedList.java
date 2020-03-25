@@ -1,4 +1,4 @@
-package org.ajeet.learnings.algorithms.ds.linear;
+package org.ajeet.learnings.algorithms.linear;
 
 public class LinkedList<T> implements IList<T> {
     private Node<T> first = null;

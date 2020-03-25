@@ -1,6 +1,4 @@
-package org.ajeet.learnings.algorithms.ds.tree;
-
-import java.util.PriorityQueue;
+package org.ajeet.learnings.algorithms.tree;
 
 public final class BinaryMinHeap<E extends Comparable<E>> {
     private final Object[] m_buffer;
@@ -26,6 +24,7 @@ public final class BinaryMinHeap<E extends Comparable<E>> {
     public boolean isEmpty(){
         return m_index == 0;
     }
+
     private void swim(int index) {
         int j = index ;
         while(j > 1) {

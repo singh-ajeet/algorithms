@@ -1,4 +1,4 @@
-package org.ajeet.learnings.algorithms.ds.tree;
+package org.ajeet.learnings.algorithms.tree;
 
 import java.util.Arrays;
 

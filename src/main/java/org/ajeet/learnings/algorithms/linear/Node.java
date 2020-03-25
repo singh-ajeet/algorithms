@@ -1,4 +1,4 @@
-package org.ajeet.learnings.algorithms.ds.linear;
+package org.ajeet.learnings.algorithms.linear;
 
 public final class Node<T> {
     T value;

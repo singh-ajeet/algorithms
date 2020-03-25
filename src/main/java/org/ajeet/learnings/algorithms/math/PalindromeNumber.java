@@ -1,4 +1,4 @@
-package org.ajeet.learnings.algorithms.ds.math;
+package org.ajeet.learnings.algorithms.math;
 
 public final class PalindromeNumber {
 

@@ -1,11 +1,9 @@
 package org.ajeet.learnings.algorithms.math;
 
-import org.ajeet.learnings.algorithms.ds.tree.Tuple;
+import org.ajeet.learnings.algorithms.utils.Tuple;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.ajeet.learnings.algorithms.ds.tree.Tuple.pair;
 
 public final class TwoSumProblem {
 
@@ -27,7 +25,7 @@ public final class TwoSumProblem {
             else if(tmpSum > sum)
                 j--;
             else
-                return pair(i, j);
+                return new Tuple<>(i, j);
         }
         throw new IllegalArgumentException("No two sum solution exists.");
     }

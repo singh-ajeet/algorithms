@@ -1,4 +1,4 @@
-package org.ajeet.learnings.algorithms.ds.tree;
+package org.ajeet.learnings.algorithms.tree;
 
 public final class BinaryMaxHeap<E extends Comparable<E>> {
     private final Object[] m_buffer;
