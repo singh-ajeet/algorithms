@@ -1,15 +1,11 @@
 package org.ajeet.learnings.algorithms.graph;
 
 import java.util.List;
+import java.util.Map;
 
-public interface IGraph {
-
-    public List<INode> dfs(INode source, INode destination);
-    public List<INode> bfs(INode source, INode destination);
-    public List<INode> shortestPath(INode source, INode destination);
-    public List<INode> aStar(INode source, INode destination);
-    public boolean connected(INode source, INode destination);
-    public boolean isBipartite();
-    public boolean isEmpty();
-
+public interface IGraph<K, V> {
+    public void addVertex(Node<K, V> node);
+    public void addEdge(Node<K, V> source, Node<K, V> destination, Map<String, Object> properties);
+    public boolean hasEdge(Node<K, V> from);
+    public List<Node<K,V>> getNeighbors(Node<K, V> node);
 }
