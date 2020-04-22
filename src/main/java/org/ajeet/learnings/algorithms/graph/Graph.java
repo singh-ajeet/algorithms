@@ -5,12 +5,13 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Graph<K, V> implements IGraph<K,V> {
     private final Map<Node<K, V>, List<Edge<K, V>>> adjancyList = new HashMap<>();
 
     @Override
-    public void addVertex(Node<K, V> node) {
+    public void addNode(Node<K, V> node) {
         if (adjancyList.containsKey(node))
             throw new RuntimeException("Node already exists.");
         adjancyList.put(node, null);
@@ -45,6 +46,11 @@ public class Graph<K, V> implements IGraph<K,V> {
             neighbors.add(edge.getAnother(node));
         }
         return neighbors;
+    }
+
+    @Override
+    public Set<Node<K,V>> getNodes() {
+        return Collections.unmodifiableSet(adjancyList.keySet());
     }
 
 }

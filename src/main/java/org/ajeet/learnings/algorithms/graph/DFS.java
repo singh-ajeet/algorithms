@@ -12,15 +12,25 @@ public final class DFS<K,V> {
         this.graph = graph;
     }
 
-    private void dfs(Node source){
+    public void dfs(Node source){
         visited.clear();
+        dfs_(source);
+    }
+
+    public void dfs(){
+        visited.clear();
+        for (Node node : graph.getNodes()) {
+            if (!visited.containsKey(node)){
+                connectedComponents++;
+                dfs(node);
+            }
+        }
     }
 
     private void dfs_(Node source){
         if(visited.containsKey(source))
             return;
         visited.put(source, true);
-        connectedComponents++;
         List<Node> neighbors = graph.getNeighbors(source);
         for(Node neighbor : neighbors) {
             dfs_(neighbor);
