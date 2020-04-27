@@ -14,7 +14,7 @@ public class Graph<K, V> implements IGraph<K,V> {
     public void addNode(Node<K, V> node) {
         if (adjancyList.containsKey(node))
             throw new RuntimeException("Node already exists.");
-        adjancyList.put(node, null);
+        adjancyList.put(node, new ArrayList<>());
     }
 
     @Override
@@ -31,7 +31,6 @@ public class Graph<K, V> implements IGraph<K,V> {
         }
         //Create an new edge
         edges.add(new Edge<>(source, destination, properties));
-
     }
 
     @Override
