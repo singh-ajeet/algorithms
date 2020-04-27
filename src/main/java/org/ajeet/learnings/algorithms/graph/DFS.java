@@ -8,6 +8,7 @@ public final class DFS<K,V> {
     private final IGraph<K,V> graph;
     private final Map<Node<K,V>, Boolean> visited = new HashMap<>();
     private int connectedComponents;
+
     private DFS(IGraph<K,V> graph){
         this.graph = graph;
     }
