@@ -1,4 +1,4 @@
-package org.ajeet.learnings.algorithms.sorting;
+package org.ajeet.learnings.algorithms.search;
 
 import java.util.Arrays;
 
