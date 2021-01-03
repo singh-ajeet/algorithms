@@ -2,32 +2,19 @@ package org.ajeet.learnings.algorithms.sorting;
 
 import java.util.Arrays;
 
-public final class MergeSort {
-    private final static int THRESOLD = 5;
+public final class MergeSortBottomUp {
 
     public static void sort(int[] nums) {
         if (nums == null || nums.length == 0) {
             return;
         }
         int n = nums.length;
-        int[] aux =  new int[n];
-        sort(nums, aux, 0, n-1);
-    }
-
-    private static void sort(int[] nums, int[] aux, int from, int to) {
-        if(from >= to){
-            return;
+        int[] aux = new int[nums.length];
+        for(int i = 1; i< n; i = i + i){
+            for(int j=0; j< n-i; j+= i + i){
+                merge(nums, aux, j, j+i-1,Math.min(j+i+i -1, n-1));
+            }
         }
-
-        if(to - from == THRESOLD){
-            InsertionSort.sort(nums, from, to);
-            return;
-        }
-
-        int mid = from + (to - from)/2;
-        sort(nums, aux, from, mid);
-        sort(nums, aux, mid+1, to);
-        merge(nums, aux, from, mid, to);
     }
 
     private static void merge(int[] nums, int[] aux, int from, int mid, int to) {
@@ -57,4 +44,5 @@ public final class MergeSort {
 
         System.out.println(Arrays.toString(nums));
     }
+
 }

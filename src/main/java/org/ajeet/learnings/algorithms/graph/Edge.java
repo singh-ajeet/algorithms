@@ -21,8 +21,8 @@ public final class Edge<K,V> {
         }
     }
 
-    public void addProperty(String name, Object value){
-        properties.put(name, value);
+    public boolean addProperty(String name, Object value){
+        return properties.put(name, value) == null;
     }
 
     public void addProperties(Map<String, Object> properties){
@@ -50,5 +50,10 @@ public final class Edge<K,V> {
             return destination;
         else
             return source;
+    }
+
+    @Override
+    public String toString() {
+        return source + "---" + properties + "-->" + destination;
     }
 }

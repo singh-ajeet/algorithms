@@ -1,8 +1,8 @@
 package org.ajeet.learnings.algorithms.list;
 
 public final class LinkedList<T> {
-    private Node first;
-    private Node last;
+    private ListNode first;
+    private ListNode last;
     private int size;
 
     public boolean add(T value){
@@ -22,18 +22,18 @@ public final class LinkedList<T> {
             addBefore(value, find(index));
     }
 
-    private Node<T> find(int index) {
-        Node<T> tmp = first;
+    private ListNode<T> find(int index) {
+        ListNode<T> tmp = first;
         int currentIndex = 0;
         while (tmp != null && currentIndex++ != index)
             tmp = tmp.next;
         return tmp;
     }
 
-    private void addBefore(T value, Node<T> node) {
+    private void addBefore(T value, ListNode<T> node) {
         T oldValue = node.value;
 
-        Node<T> newNode = new Node<>(oldValue);
+        ListNode<T> newNode = new ListNode<>(oldValue);
         newNode.next = node.next;
 
         node.value = value;
@@ -41,7 +41,7 @@ public final class LinkedList<T> {
     }
 
     public boolean addFirst(T value){
-        Node<T> node = new Node<>(value);
+        ListNode<T> node = new ListNode<>(value);
         if(first == null){
             first = last = node;
         } else {
@@ -53,7 +53,7 @@ public final class LinkedList<T> {
     }
 
     public boolean addLast(T value){
-        Node<T> node = new Node<>(value);
+        ListNode<T> node = new ListNode<>(value);
         if(last == null){
             first = last = node;
         } else {
@@ -64,15 +64,15 @@ public final class LinkedList<T> {
         return true;
     }
 
-    public Node<T> reverse(){
+    public ListNode<T> reverse(){
         if(first == null)
             return null;
 
-        Node futureFirst = new Node(first.value);
-        Node current = first.next;
+        ListNode futureFirst = new ListNode(first.value);
+        ListNode current = first.next;
 
         while(current != null){
-            Node tmp = new Node(current.value);
+            ListNode tmp = new ListNode(current.value);
             tmp.next = futureFirst;
             futureFirst = tmp;
             current = current.next;
@@ -84,7 +84,7 @@ public final class LinkedList<T> {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("LinkedList[");
-        Node tmp = first;
+        ListNode tmp = first;
         while (tmp != null){
             stringBuilder.append(tmp.value);
             tmp = tmp.next;
@@ -95,36 +95,6 @@ public final class LinkedList<T> {
         return stringBuilder.toString();
     }
 
-    private static class Node<T> {
-        private T value;
-        private Node<T> next;
-
-        public Node(T value) {
-            this.value = value;
-        }
-
-        public T getValue() {
-            return value;
-        }
-
-        public Node<T> getNext() {
-            return next;
-        }
-
-        public void setValue(T value) {
-            this.value = value;
-        }
-
-        public void setNext(Node<T> next) {
-            this.next = next;
-        }
-
-        @Override
-        public String toString() {
-            return "Node [" + value + "]";
-        }
-    }
-
     public static void main(String[] args) {
         LinkedList<Character> list = new LinkedList<>();
 
@@ -133,7 +103,7 @@ public final class LinkedList<T> {
         list.add('C');
         list.add('D');
 
-        Node revered = list.reverse();
+        ListNode revered = list.reverse();
         while (revered != null){
             System.out.println(revered.value);
             revered = revered.next;

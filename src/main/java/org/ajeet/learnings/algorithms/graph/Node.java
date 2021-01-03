@@ -18,11 +18,16 @@ final class Node<K,V> {
         return graph.getNeighbors(this);
     }
 
-    public void addEdge(Node<K,V> to, Map<String, Object> properties) {
-        graph.addEdge(this, to, properties);
+    public boolean addEdge(Node<K,V> to, Map<String, Object> properties) {
+        return graph.addEdge(this, to, properties);
     }
 
     public boolean hasEdge(){
         return graph.hasEdge(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Node (" + "key:" + key + ", value:" + value + ')';
     }
 }

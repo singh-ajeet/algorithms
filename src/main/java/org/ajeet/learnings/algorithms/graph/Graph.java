@@ -8,29 +8,35 @@ import java.util.Map;
 import java.util.Set;
 
 public class Graph<K, V> implements IGraph<K,V> {
-    private final Map<Node<K, V>, List<Edge<K, V>>> adjancyList = new HashMap<>();
+    private final Map<Node<K, V>, List<Edge<K, V>>> adjancyList;
 
-    @Override
-    public void addNode(Node<K, V> node) {
-        if (adjancyList.containsKey(node))
-            throw new RuntimeException("Node already exists.");
-        adjancyList.put(node, new ArrayList<>());
+    public Graph() {
+        adjancyList = new HashMap<>();
     }
 
     @Override
-    public void addEdge(Node<K, V> source, Node<K, V> destination, Map<String, Object> properties) {
+    public boolean addNode(Node<K, V> node) {
+        if (adjancyList.containsKey(node))
+            return false;
+        adjancyList.put(node, new ArrayList<>());
+        return true;
+    }
+
+    @Override
+    public boolean addEdge(Node<K, V> source, Node<K, V> destination, Map<String, Object> properties) {
         if(!adjancyList.containsKey(source) || !adjancyList.containsKey(destination))
-            throw new RuntimeException("Source and destination both are mendatory to create an edge.");
+            return false;
         List<Edge<K,V>> edges = adjancyList.get(source);
         for (Edge<K,V> edge : edges) {
             //If an edge already exists than update the properties and return
             if (edge.getAnother(source) != null) {
                 edge.addProperties(properties);
-                return;
+                return true;
             }
         }
         //Create an new edge
         edges.add(new Edge<>(source, destination, properties));
+        return true;
     }
 
     @Override
