@@ -1,4 +1,4 @@
-package org.ajeet.learnings.algorithms.sort.external;
+package org.ajeet.learnings.algorithms.sorting.external;
 
 import java.io.BufferedInputStream;
 import java.io.File;

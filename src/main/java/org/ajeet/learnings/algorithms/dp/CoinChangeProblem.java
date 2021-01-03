@@ -26,29 +26,6 @@ public final class CoinChangeProblem {
         return dp[amount] > amount ? -1 : dp[amount];
     }
 
-/*
-    private static long minCoins(int[] coins, int sum){
-        int[] dp = new int[sum +1];
-
-        for (int i=1; i <= sum; i++){
-
-            dp[i] = Integer.MAX_VALUE;
-            int res = Integer.MAX_VALUE;
-
-            for (int c=0; c<coins.length; c++) {
-                if(i - coins[c] >= 0) {
-                    res = dp[i - coins[c]];
-                }
-
-                if (res != Integer.MAX_VALUE) {
-                    dp[i] = Integer.min(dp[i], res + 1);
-                }
-            }
-        }
-        return dp[sum];
-    }
-*/
-
     private static long maxWays(int[] coins, int sum){
         long[] results = new long[sum+1];
 
